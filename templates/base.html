@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="ru">
   <head>
-    <title>Django blog</title>
+    <title>Urbanist blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Spectral&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}"/>
   </head>
   <body>
-    <header>
-      <h1><a href="{% url 'home' %}">Django blog</a></h1>
-    </header>
-    <div>
-      {% block content %}
-      {% endblock content %}
-    </div>
+    <article class="posts">
+        <header>
+            <div id="logo"><a href="{% url 'home' %}">
+                Urbanist blog</a>
+            </div>
+        </header>
+        <div>
+          {% block content %}
+          {% endblock content %}
+        </div>
+    </article>
   </body>
 </html>

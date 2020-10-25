@@ -1,3 +1,27 @@
-body{ font-family: Verdana;}
-h1{color:navy;}
-img{width:350px;}
+body{
+    background: rgba(13,122,160,0.5);
+}
+.post-entry{
+    font-size: 18px;
+    font-family: "Spectral", Arial, sans-serif;
+    background: rgb(200,240,250);
+    padding-left: 40px;
+    padding-right: 120px;
+}
+h1,h2,h3,h4,h5{
+    font-family: "Yanone Kaffeesatz", sans-serif;
+}
+h2{
+    font-size: 2em;
+}
+#logo{
+    font-size: 3em;
+    font-family: 'Cabin Sketch', cursive;
+    text-align: center;
+    background: rgb(232,123,121);
+    border-radius:10px 10px  10px 10px;
+}
+.posts{
+    max-width: 1000px;
+    margin:0 auto;
+}

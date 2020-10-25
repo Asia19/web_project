@@ -10,6 +10,14 @@ class Post(models.Model):
         on_delete=models.CASCADE
     )
     body = models.TextField()
+    tag = models.ManyToManyField('Tag', help_text="Select a tag for this book")
 
     def __str__(self):
         return self.title
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
