@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<h>#{{ tag }} posts</h>
+{% for post in object_list %}
+  <div class="post-entry">
+    <p>{{ post.body }}</p>
+  </div>
+{% endfor %}
+
+{% endblock content %}

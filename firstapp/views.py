@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
-from .models import Post
+from .models import Post, Tag
 
 # Create your views here.
 def index(request):
@@ -18,3 +19,16 @@ class BlogListView(ListView):
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+class TagPostsView(ListView):
+
+    template_name = 'tag_posts.html'
+
+    def get_queryset(self):
+        self.tag = get_object_or_404(Tag, name=self.args[0])
+        return Post.objects.filter(tags__in=[self.tag])
+
+    def get_context_data(self, **kwargs):
+        context = super(TagPostsView,self).get_context_data(**kwargs)
+        context['tag'] = self.tag
+        return context

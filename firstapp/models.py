@@ -5,7 +5,7 @@ from django.urls import reverse
 # Create your models here.
 
 class Tag(models.Model):
-    name = models.CharField(max_length=20, help_text="Enter a post tag")
+    name = models.CharField(max_length=20, unique=True, help_text="Enter a post tag")
 
     def __str__(self):
         return self.name
