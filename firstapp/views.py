@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post, Tag
+from .forms import PostForm
 
 # Create your views here.
 def index(request):
@@ -15,6 +16,7 @@ def about(request):
 class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
+    ordering = ['-publication_date']
 
 class BlogDetailView(DetailView):
     model = Post
@@ -35,5 +37,6 @@ class TagPostsView(ListView):
 
 class AddPostView(CreateView):
     model = Post
+    form_class = PostForm
     template_name = 'add_post.html'
-    fields = ['title', 'author', 'body', 'tags']
+    # fields = ('title', 'author', 'body', 'tags')

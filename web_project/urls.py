@@ -18,7 +18,8 @@ from django.urls import path, include
 from firstapp import views
 
 urlpatterns = [
-    path('', include('firstapp.urls')),
     path('admin/', admin.site.urls),
-    path('about/', views.about)
+    path('members/', include('django.contrib.auth.urls')),
+    path('members/', include('members.urls')),
+    path('', include('firstapp.urls'))
 ]

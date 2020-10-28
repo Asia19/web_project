@@ -18,7 +18,7 @@ h,h1,h2,h3,h4,h5{
     font-size: 80px;
     font-family: 'Sedgwick Ave Display', cursive;
     float: left;
-    width:40%;
+    width:25%;
     padding-left: 40px;
 }
 #header .logo a{
@@ -72,8 +72,6 @@ ul.horizontal li{
     font-size: 14px;
     font-family: "Spectral", Arial, sans-serif;
     margin: 20px;
-    /*overflow: hidden;
-    height: 350px; */
     clear: both;
 }
 #middle .post h2{
@@ -90,5 +88,31 @@ ul.horizontal li{
     margin: 20px;
 }
 #middle .tag{
+    text-align: center;
+}
+.form-group p{
+    background: #447e9b;
+    margin: 20px;
+}
+.form-group button{
+    width: 80px;
+    margin: 10px 20px;
+}
+.form-group label{
+    display:inline-block;
+    width: 200px;
+    font-size: 25px;
+    font-family: 'Roboto Slab', serif;
+}
+.form-group input{
+    width: 500px;
+}
+.form-group select{
+    width: 500px;
+}
+.form-group textarea{
+    width: 500px;
+}
+.center-pos{
     text-align: center;
 }
