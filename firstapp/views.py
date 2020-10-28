@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Post, Tag
 
 # Create your views here.
@@ -32,3 +32,8 @@ class TagPostsView(ListView):
         context = super(TagPostsView,self).get_context_data(**kwargs)
         context['tag'] = self.tag
         return context
+
+class AddPostView(CreateView):
+    model = Post
+    template_name = 'add_post.html'
+    fields = ['title', 'author', 'body', 'tags']

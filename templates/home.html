@@ -2,14 +2,19 @@
 {% extends 'base.html' %}
 {% block content %}
   {% for post in object_list %}
-    <div class="post-entry">
-        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><span style="font-size:36px;">   by {{ post.author }}</span></h2>
-      <p>{{ post.body }}</p>
-      <ol>
-      {% for tag in post.tags.all %}
-          <li><a href="">#{{ tag }}</a></li>
-      {% endfor %}
-      </ol>
+    <div class="post">
+{#        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><span style="font-size:36px;">   by {{ post.author }}</span></h2>#}
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <h4>by {{ post.author }}</h4>
+        <p>{{ post.publication_date }}</p>
+        <p>{{ post.body }}<br/>
+            <a href="{% url 'post_detail' post.pk %}">[продолжение]</a>
+        </p>
+        <ul class="horizontal">
+            {% for tag in post.tags.all %}
+                <li><a href="{% url 'tag_posts' tag%}">#{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
   {% endfor %}
 

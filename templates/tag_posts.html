@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
-<h>#{{ tag }} posts</h>
+<h2 class="tag">#{{ tag }}</h2>
 {% for post in object_list %}
-  <div class="post-entry">
-    <p>{{ post.body }}</p>
+  <div class="post">
+      <h2>{{ post.title }}</h2>
+      <h4>by {{ post.author }}</h4>
+      <p>{{ post.publication_date }}</p>
+      <p>{{ post.body }}</p>
   </div>
 {% endfor %}
 
