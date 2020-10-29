@@ -5,9 +5,17 @@
     <div class="post">
 {#        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><span style="font-size:36px;">   by {{ post.author }}</span></h2>#}
         <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <h4>by {{ post.author }}</h4>
+        <h4>by {{ post.author }}
+          {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+              <br/>
+              <a href="{% url 'update_post' post.pk %}">edit post</a>-
+              <a href="{% url 'delete_post' post.pk %}">delete</a>
+            {% endif %}
+          {% endif %}
+        </h4>
         <p>{{ post.publication_date }}</p>
-        <p>{{ post.body }}<br/>
+        <p>{{ post.body}}<br/>
             <a href="{% url 'post_detail' post.pk %}">[продолжение]</a>
         </p>
         <ul class="horizontal">

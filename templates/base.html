@@ -14,10 +14,14 @@
 {#          <div class="class2">kokoko</div>#}
           <div class="horizontal nav">
               <ul>
+                  {% if user.is_authenticated %}
+                    <li><a href="{% url 'add_post' %}">Add post</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                  {% else %}
+                    <li><a href="{% url 'register' %}">Registration</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                  {% endif %}
                 <li><a href="#">Hot</a></li>
-                <li><a href="{% url 'add_post' %}">Add post</a></li>
-                <li><a href="{% url 'register' %}">Registration</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
               </ul>
           </div>
       </div>

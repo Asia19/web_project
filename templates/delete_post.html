@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="center-pos"> Delete post</h2>
+{% if user.is_authenticated %}
+  {% if user.id == post.author.id %}
+    <h2 class="center-pos">{{ post.title }}?</h2>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+        <div class="center-pos"><button>Delete</button></div>
+    </div>
+  {% else %}
+    You're not allowed here! Login or register.
+  {% endif %}
+{% else %}
+  You're not allowed here! Login or register.
+{% endif %}
+{% endblock content %}

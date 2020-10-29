@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Post, Tag
-from .forms import PostForm
+from .forms import PostForm, UpdateForm
 
 # Create your views here.
 def index(request):
@@ -39,4 +40,18 @@ class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'add_post.html'
-    # fields = ('title', 'author', 'body', 'tags')
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = UpdateForm
+    template_name = 'update_post.html'
+
+class DeletePostView(DeleteView):
+    model = Post
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('home')

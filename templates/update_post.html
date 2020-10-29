@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-{#<div class="center-pos">#}
-<h2 class="center-pos"> Add post</h2>
+<h2 class="center-pos"> Edit post</h2>
 {% if user.is_authenticated %}
+  {% if user.id == post.author.id %}
     <div class="form-group">
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-        <div class="center-pos"><button>Post</button></div>
+        <div class="center-pos"><button>Edit</button></div>
     </div>
+    {% else %}
+    You're not allowed here! Login or register.
+    {% endif %}
 {% else %}
     You're not allowed here! Login or register.
 {% endif %}
