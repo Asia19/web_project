@@ -15,7 +15,7 @@
           {% endif %}
         </h4>
         <p>{{ post.publication_date }}</p>
-        <p>{{ post.body}}<br/>
+        <p>{{ post.body|safe}}<br/>
             <a href="{% url 'post_detail' post.pk %}">[продолжение]</a>
         </p>
         <ul class="horizontal">

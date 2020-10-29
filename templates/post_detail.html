@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
-{#user id = {{ user.id }}</br>#}
-{#post author id = {{ post.author.id }}#}
   <div class="post">
-      <h2>{{ post.title }}</h2>
-      <h4>by {{ post.author }}
+    <h2>{{ post.title }}</h2>
+    <h4>by {{ post.author }}
+    {% if user.is_authenticated %}
+      {% if user.id == post.author.id %}
+        <br/>
+        <a href="{% url 'update_post' post.pk %}">edit post</a>-
+        <a href="{% url 'delete_post' post.pk %}">delete</a>
+      {% endif %}
+    {% endif %}
+    </h4>
+    <p>{{ post.publication_date }}</p>
+    <p>{{ post.body|safe }}</p>
+    <div class="form-like">
         {% if user.is_authenticated %}
-          {% if user.id == post.author.id %}
-            <br/>
-            <a href="{% url 'update_post' post.pk %}">edit post</a>-
-            <a href="{% url 'delete_post' post.pk %}">delete</a></h4>
-          {% endif %}
+            {% if liked %}
+                <form action="{% url 'like_post' post.pk %}" method="POST">
+                {% csrf_token %}
+                    <button id="unlike", type="submit", name="post_id", value="{{ post.id }}">
+                        {{  total_likes }} likes
+                    </button>
+                </form>
+            {% else %}
+                <form action="{% url 'like_post' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button id="like", type="submit", name="post_id", value="{{ post.id }}">
+                        {{  total_likes }} likes
+                    </button>
+                </form>
+            {% endif %}
+        {% else %}
+            <button id="like">{{  total_likes }} likes </button>
         {% endif %}
-      <p>{{ post.publication_date }}</p>
-      <p>{{ post.body }}</p>
+    </div>
   </div>
 
 {% endblock content %}
