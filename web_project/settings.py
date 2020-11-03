@@ -1,5 +1,29 @@
 import os
+import environ
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+
+# False if not in os.environ
+DEBUG = env('DEBUG')
+
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
+SECRET_KEY = env('SECRET_KEY')
+
+# Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
+DATABASES = {
+    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': env.db(),
+    # read os.environ['SQLITE_URL']
+    'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
+}
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,11 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qu*%$qosb7*5po(!nnz-2=3rt&(u2@65e0y%^5zh^d&u#aqa81'
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
+# SECURITY WARNING: update this when you have the production host
 ALLOWED_HOSTS = []
 
 
@@ -66,13 +91,12 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASE_NAME = os.environ.get('DB_USER')
+DATABASE_USER = os.environ.get('DB_PASS')
+DATABASE_ENGINE = 'django.db.backends.postgresql_psycopg2'
+DATABASE_NAME = 'web_project_db'
+DATABASE_HOST =  'localhost'
+DATABASE_PORT ='5433'
 
 
 # Password validation
