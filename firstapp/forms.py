@@ -6,9 +6,9 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'body', 'tags')
         widgets = {
-            'title' : forms.TextInput(attrs={'class':'form-control'}),
+            'title' : forms.TextInput(attrs={'class':'input'}),
             # 'author': forms.Select(attrs={'class':'form-control'}),
-            'body': forms.Textarea(attrs={'class':'form-control'}),
+            'body': forms.Textarea(attrs={'class':'ckeditor'}),
             'tags': forms.SelectMultiple(attrs={'class':'form-control'})
         }
 

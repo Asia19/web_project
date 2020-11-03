@@ -59,7 +59,7 @@ ul.horizontal li{
     display: inline;
 }
 #middle{
-    width: 1000px;
+    width: 1150px;
     margin:0 auto;
     background: #f8f9fa;
     clear: both;
@@ -100,7 +100,7 @@ ul.horizontal li{
 }
 .form-group label{
     display:inline-block;
-    width: 100px;
+    width: 150px;
     font-size: 25px;
     font-family: 'Roboto Slab', serif;
     float: left;

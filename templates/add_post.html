@@ -8,7 +8,31 @@
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
-        <div class="center-pos"><button>Post</button></div>
+{#            <div class="field">#}
+{#                <label>Title</label>#}
+{#                <div class="control">#}
+{#                    <input class="input" type="text">#}
+{#                    {{ form.title }}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="field">#}
+{#                <label>Body</label>#}
+{#                <div class="control">#}
+{#                    <textarea class="ckeditor" type="text" placeholder="write your post"></textarea>#}
+{#                    {{ form.body }}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="field">#}
+{#                <label>Tags</label>#}
+{#                <input type="text", name="newTag">#}
+{#                <button method="submit", name="newTag", value="newTag">#}
+{#                    AddTag#}
+{#                </button>#}
+{#            </div>#}
+            <div class="center-pos">
+                <button>Post</button>
+            </div>
+        </form>
     </div>
 {% else %}
     You're not allowed here! Login or register.
