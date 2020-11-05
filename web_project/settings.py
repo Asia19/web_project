@@ -4,22 +4,11 @@ import dj_database_url
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-# reading .env file
-environ.Env.read_env()
-
 # False if not in os.environ
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-
-# Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,6 +74,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'web_project.wsgi.application'
+
+# Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
+DATABASES = {
+    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': {
+        'ENGINE' : 'django.db.backends.sqlite3',
+        'NAME' : os.path.join(BASE_DIR, 'db.sqlite3')
+    }
+}
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
