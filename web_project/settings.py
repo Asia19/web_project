@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # DEBUG = True
 
 # SECURITY WARNING: update this when you have the production host
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['urbanist-blog.herokuapp.com','127.0.0.1']
 
 
 # Application definition
