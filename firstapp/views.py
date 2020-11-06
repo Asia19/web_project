@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
+from django.utils import timezone
 from .models import Post, Tag
 from .forms import PostForm, UpdateForm
 
@@ -57,6 +58,10 @@ class UpdatePostView(UpdateView):
     model = Post
     form_class = UpdateForm
     template_name = 'update_post.html'
+
+    def form_valid(self, form):
+        form.instance.modification_date = timezone.now()
+        return super().form_valid(form)
 
 class DeletePostView(DeleteView):
     model = Post

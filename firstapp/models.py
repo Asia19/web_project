@@ -15,11 +15,16 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    publication_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    # body = models.TextField()
+    publication_date = models.DateTimeField(default=timezone.now, blank=True)
+    modification_date = models.DateTimeField(blank=True, null=True)
     body = RichTextField(blank=True, null=True)
     tags = models.ManyToManyField('Tag', help_text="Select a tag for this post")
     likes = models.ManyToManyField(User, related_name='blog_posts')
+
+    def __init__(self, *args, **kwargs):
+        super(Post, self).__init__(*args, **kwargs)
+        if not self.modification_date:
+            self.modification_date = self.publication_date
 
     def __str__(self):
         return self.title
