@@ -8,7 +8,7 @@ from django.core.exceptions import ImproperlyConfigured
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
